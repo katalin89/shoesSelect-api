@@ -1,9 +1,6 @@
 package ro.mycode.shoesSelectapi.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ro.mycode.shoesSelectapi.model.Shoes;
 import ro.mycode.shoesSelectapi.repository.ShoesRepo;
 
@@ -30,9 +27,19 @@ public class ControllerShoes {
         return shoesRepo.getAllModels();
     }
 
-    @GetMapping("api/v1/shoes/{modele")
+    @GetMapping("api/v1/shoes/{modele}")
     public List<Shoes>getAllShoesByModele(@PathVariable String model){
+
         return  shoesRepo.getAllShoesByModel(model);
     }
+
+    @PostMapping("api/v1/add")
+    public  Shoes addShoes(@RequestBody Shoes shoes){
+        this.shoesRepo.save(shoes);
+
+        return  shoes;
+    }
+
+
 
 }
