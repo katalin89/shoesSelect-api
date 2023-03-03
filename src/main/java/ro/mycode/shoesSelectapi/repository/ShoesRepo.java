@@ -28,4 +28,25 @@ public interface ShoesRepo extends JpaRepository<Shoes, Long> {
     void deleteById(int id);
 
     Shoes findByModel(String model);
+
+    @Transactional
+    @Modifying
+    @Query("select  distinct  s from Shoes s order by  s.pret")
+    List<Shoes>sortByPrice();
+
+    @Transactional
+    @Modifying
+    @Query("select  distinct  s from Shoes s order by  s.material")
+    List<Shoes>sortByMaterial();
+
+    @Transactional
+    @Modifying
+    @Query("select distinct s from Shoes s order by  s.culoare")
+    List<Shoes>sortByCuloare();
+
+    @Transactional
+    @Modifying
+    @Query("select distinct  s from Shoes s order by s.model")
+    List<Shoes>sortByModel();
+
 }
